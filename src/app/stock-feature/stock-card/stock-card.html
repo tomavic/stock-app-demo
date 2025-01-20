@@ -1,0 +1,38 @@
+<div
+  class="border rounded-lg shadow-md p-4 mb-4"
+  [ngClass]="{
+    'bg-green-500': priceChange() > 0,
+    'bg-red-500': priceChange() < 0,
+    'bg-gray-100 shadow-none': !isUpdating()
+  }"
+>
+  <div class="flex justify-between items-center">
+    <h2 class="text-lg font-bold">
+      {{ stock.companyName }} ({{ stock.symbol }})
+    </h2>
+    <label class="inline-flex relative items-center cursor-pointer">
+      <input
+        type="checkbox"
+        [(ngModel)]="isUpdatingInternal"
+        (ngModelChange)="onToggleChange()"
+        class="sr-only peer"
+      />
+      <div
+        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+      ></div>
+      <!-- <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >{{ isUpdating() ? 'Updates On' : 'Updates Off' }}</span
+      > -->
+    </label>
+  </div>
+  <p>
+    Current Price:
+    <span>${{ currentPrice() | number : '1.2-2' }}</span>
+  </p>
+  <p>Daily High: ${{ stock.dailyHigh | number : '1.2-2' }}</p>
+  <p>Daily Low: ${{ stock.dailyLow | number : '1.2-2' }}</p>
+  <div class="md:block hidden">
+    <p>52 Week High: ${{ stock.weeklyHigh | number : '1.2-2' }}</p>
+    <p>52 Week Low: ${{ stock.weeklyLow | number : '1.2-2' }}</p>
+  </div>
+</div>
