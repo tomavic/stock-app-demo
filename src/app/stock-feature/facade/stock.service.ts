@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { initialStocks, Stock } from './stock.model';
+import { initialStocks, Stock } from '../stock.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,6 @@ export class StockService {
         stock.isPriceUpdating = !stock.isPriceUpdating;
       }
     });
-    this.stocksSubject.next(this.stocksSubject.getValue()); // Emit updated state
+    this.stocksSubject.next(this.stocksSubject.getValue());
   }
 }

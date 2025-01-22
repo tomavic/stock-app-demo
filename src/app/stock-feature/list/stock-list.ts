@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { StockCardComponent } from '../stock-card/stock-card';
-import { Stock } from '../stock.model';
-import { StockService } from '../stock.service';
+import { Component, inject } from '@angular/core';
+import { StockCardComponent } from '../card/stock-card';
+import { StockService } from '../facade/stock.service';
 
 @Component({
   selector: 'app-stock-list',
@@ -21,11 +19,6 @@ import { StockService } from '../stock.service';
   `,
 })
 export class StockListComponent {
-  stocks$: Observable<Stock[]> | undefined;
-
-  constructor(private stockService: StockService) {}
-
-  ngOnInit(): void {
-    this.stocks$ = this.stockService.stocks$;
-  }
+  stockService = inject(StockService);
+  stocks$ = this.stockService.stocks$;
 }

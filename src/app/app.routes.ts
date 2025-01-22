@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./stock-feature/stock-list/stock-list').then(
+      import('./stock-feature/list/stock-list').then(
         (m) => m.StockListComponent
       ),
   },

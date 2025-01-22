@@ -32,7 +32,7 @@ export class StockCardComponent implements OnInit, OnDestroy {
   }
 
   onToggleChange() {
-    this.isUpdating.set(this.isUpdatingInternal); // Update the signal
+    this.isUpdating.set(this.isUpdatingInternal);
     if (this.isUpdating()) {
       this.startPriceUpdates();
     } else {
@@ -67,7 +67,10 @@ export class StockCardComponent implements OnInit, OnDestroy {
 }
 
 // Function to generate normally distributed random numbers (Box-Muller transform)
-function generateNormalDistribution(mean: number, stdDev: number): number {
+export function generateNormalDistribution(
+  mean: number,
+  stdDev: number
+): number {
   let u = 0,
     v = 0;
   while (u === 0) u = Math.random(); // Converting [0,1) to (0,1)
